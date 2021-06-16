@@ -5,6 +5,7 @@ import {
   ThemeProvider,
 } from "@material-ui/core/styles";
 import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import {
   AppBar,
   Card,
@@ -16,6 +17,10 @@ import {
   Toolbar,
   Typography,
 } from "@material-ui/core";
+
+import Home from "./Components/Home";
+import Dex from "./Components/Dex";
+import Detail from "./Components/Detail";
 
 const useStyles = makeStyles((theme) => ({
   icon: {
@@ -93,27 +98,19 @@ function App() {
         </AppBar>
       </ThemeProvider>
       <main>
-        <Container className={classes.cardGrid} maxWidth="md">
-          <Grid container spacing={4}>
-            {pokes.map((card) => (
-              <Grid item key={card} xs={12} sm={6} md={4}>
-                <Card className={classes.card}>
-                  <CardMedia
-                    className={classes.cardMedia}
-                    image={card.sprites.front_default}
-                    title="Image title"
-                  />
-                  <CardContent className={classes.cardContent}>
-                    <Typography gutterBottom variant="h5" component="h2">
-                      {card.name}
-                    </Typography>
-                    <Typography>#{card.id}</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
+        <Router>
+          <Switch>
+            <Route path="/detail">
+              <Detail />
+            </Route>
+            <Route path="/dex">
+              <Dex />
+            </Route>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
+        </Router>
       </main>
     </React.Fragment>
   );
