@@ -66,6 +66,7 @@ const Detail = (props) => {
                 variant="contained"
                 size="small"
                 color="primary"
+                disabled={props.isDexFull}
                 onClick={() => props.addDexPoke(props.detailPoke.id)}
               >
                 Add to Pokedex
@@ -80,6 +81,7 @@ const Detail = (props) => {
 
 Detail.defaultProps = {
   detailPoke: { sprites: [{}], types: [{}] },
+  isDexFull: false,
 };
 
 export default Detail;

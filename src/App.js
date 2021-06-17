@@ -51,7 +51,7 @@ function App() {
       if (pokeToAdd.length === 1) {
         const newDexPokes = [...dexPokes, pokeToAdd[0]];
         setDexPokes(newDexPokes);
-        if (dexPokes.length > 5) setIsDexFull(true);
+        if (dexPokes.length >= 5) setIsDexFull(true);
       }
     }
   }
@@ -81,7 +81,11 @@ function App() {
             <Switch>
               <Route path="/detail">
                 <NavBar title="Detail" isHome={false} />
-                <Detail detailPoke={detailPoke} addDexPoke={addDexPoke} />
+                <Detail
+                  detailPoke={detailPoke}
+                  addDexPoke={addDexPoke}
+                  isDexFull={isDexFull}
+                />
               </Route>
               <Route path="/dex">
                 <NavBar title="Dex" isHome={false} />
