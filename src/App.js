@@ -28,7 +28,7 @@ const theme = createMuiTheme({
 function App() {
   const [pokes, setPokes] = useState([]);
   const [dexPokes, setDexPokes] = useState([]);
-  const [detailPoke, setDetailPoke] = useState({ sprites: [{}] });
+  const [detailPoke, setDetailPoke] = useState({ sprites: [{}], types: [{}] });
   const [isDexFull, setIsDexFull] = useState(false);
 
   useEffect(() => {
@@ -56,7 +56,7 @@ function App() {
     const requestedPoke = pokes.filter((item) => item.id === id);
     if (requestedPoke.length == 1) setDetailPoke(requestedPoke[0]);
     else {
-      return setDetailPoke({ sprites: [{}] });
+      return setDetailPoke({ sprites: [{}], types: [{}] });
     }
   }
 
