@@ -1,70 +1,27 @@
-# Getting Started with Create React App
+# Digital Pokedex - frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the front end for the Digital Pokedex web app developed for the Ubiqua Coding Challenge.
 
-## Available Scripts
+The app was developed using the React library and the Material-UI framework.
 
-In the project directory, you can run:
+Back end repository can be found [here](https://github.com/apovedam/pokedex-backend).
 
-### `npm start`
+## App.js
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The main project file that queries the backend via a fetch request to obtain a list of 10 randomly generated pokemon.
+This contains useState hooks for both the list of queried pokemon as well as the ones currently in the pokedex.
+It also contains the Router and Switch components to properly display the correct child component depending on the current route.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Routes
 
-### `npm test`
+### Home (`/`)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Shows the 10 randomly generated pokemon obtained from the backend, each of which can be clicked to go to it's respective detail screen.
 
-### `npm run build`
+### Detail (`/Detail`)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Shows a specific pokemon's detail and type information, along with a button to add it to the pokedex state variable.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Pokedex (`/Dex`)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Shows up to 6 pokemon added to the pokedex by the user, along with a function to remove any of them from the state.
