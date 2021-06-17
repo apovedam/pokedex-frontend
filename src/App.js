@@ -29,7 +29,7 @@ function App() {
   const [pokes, setPokes] = useState([]);
 
   useEffect(() => {
-    fetch("localhost:4000/poke")
+    fetch("https://ubiqua-pokedex-backend.herokuapp.com/poke")
       .then((res) => res.json())
       .then((res) => setPokes(res));
   }, []);
