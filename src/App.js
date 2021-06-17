@@ -29,7 +29,7 @@ const theme = createMuiTheme({
 function App() {
   const [pokes, setPokes] = useState([]);
   const [dexPokes, setDexPokes] = useState([]);
-  const [detailPoke, setDetailPoke] = useState({ sprites: [{}], types: [{}] });
+  const [detailPoke, setDetailPoke] = useState({ sprites: [{}], types: [] });
   const [isDexFull, setIsDexFull] = useState(false);
 
   useEffect(() => {

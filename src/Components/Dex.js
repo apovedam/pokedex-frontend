@@ -86,7 +86,6 @@ const Dex = (props) => {
   const classes = useStyles();
 
   const history = useHistory();
-  const handleOnClick = (a) => history.push("/Detail/" + a);
 
   return (
     <Container className={classes.cardGrid} maxWidth="md">
