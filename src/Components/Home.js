@@ -31,8 +31,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   cardMedia: {
-    // paddingTop: "56.25%", // 16:9
-    paddingTop: "100%", // 16:9
+    paddingTop: "100%",
     backgroundColor: "#e0e0e0",
     color: "#FFFFFF",
     height: 0,
@@ -50,7 +49,10 @@ const Home = (props) => {
   const classes = useStyles();
 
   const history = useHistory();
-  const handleOnClick = (a) => history.push("/Detail/" + a);
+  const handleOnClick = (id) => {
+    props.loadDetail(id);
+    history.push("/Detail");
+  };
 
   return (
     <Container className={classes.cardGrid} maxWidth="md">

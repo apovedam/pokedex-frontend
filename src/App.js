@@ -28,15 +28,36 @@ const theme = createMuiTheme({
 function App() {
   const [pokes, setPokes] = useState([]);
   const [dexPokes, setDexPokes] = useState([]);
+  const [detailPoke, setDetailPoke] = useState({ sprites: [{}] });
+  const [isDexFull, setIsDexFull] = useState(false);
+
   useEffect(() => {
     fetch("https://ubiqua-pokedex-backend.herokuapp.com/poke")
       .then((res) => res.json())
       .then((res) => setPokes(res));
   }, []);
 
+  function addDexPoke(id) {
+    if (!isDexFull) {
+      const pokeToAdd = pokes.filter((item) => item.id === id);
+      const newDexPokes = [...dexPokes, pokeToAdd];
+      setDexPokes(newDexPokes);
+      if (dexPokes.length > 5) setIsDexFull(true);
+    }
+  }
+
   function removeDexPoke(id) {
     const newDexPokes = dexPokes.filter((item) => item.id !== id);
     setDexPokes(newDexPokes);
+    setIsDexFull(false);
+  }
+
+  function loadDetail(id) {
+    const requestedPoke = pokes.filter((item) => item.id === id);
+    if (requestedPoke.length == 1) setDetailPoke(requestedPoke[0]);
+    else {
+      return setDetailPoke({ sprites: [{}] });
+    }
   }
 
   return (
@@ -55,13 +76,13 @@ function App() {
         <Router>
           <Switch>
             <Route path="/detail">
-              <Detail />
+              <Detail detailPoke={detailPoke} addDexPoke={addDexPoke} />
             </Route>
             <Route path="/dex">
               <Dex dexPokes={dexPokes} removeDexPoke={removeDexPoke} />
             </Route>
             <Route path="/">
-              <Home pokes={pokes} />
+              <Home pokes={pokes} loadDetail={loadDetail} />
             </Route>
           </Switch>
         </Router>
