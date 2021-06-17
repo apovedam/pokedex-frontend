@@ -27,12 +27,17 @@ const theme = createMuiTheme({
 
 function App() {
   const [pokes, setPokes] = useState([]);
-
+  const [dexPokes, setDexPokes] = useState([]);
   useEffect(() => {
     fetch("https://ubiqua-pokedex-backend.herokuapp.com/poke")
       .then((res) => res.json())
       .then((res) => setPokes(res));
   }, []);
+
+  function removeDexPoke(id) {
+    const newDexPokes = dexPokes.filter((item) => item.id !== id);
+    setDexPokes(newDexPokes);
+  }
 
   return (
     <React.Fragment>
@@ -53,7 +58,7 @@ function App() {
               <Detail />
             </Route>
             <Route path="/dex">
-              <Dex />
+              <Dex dexPokes={dexPokes} removeDexPoke={removeDexPoke} />
             </Route>
             <Route path="/">
               <Home pokes={pokes} />
