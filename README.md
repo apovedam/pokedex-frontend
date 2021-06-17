@@ -9,7 +9,9 @@ Back end repository can be found [here](https://github.com/apovedam/pokedex-back
 ## App.js
 
 The main project file that queries the backend via a fetch request to obtain a list of 10 randomly generated pokemon.
+
 This contains useState hooks for both the list of queried pokemon as well as the ones currently in the pokedex.
+
 It also contains the Router and Switch components to properly display the correct child component depending on the current route.
 
 ## Routes
