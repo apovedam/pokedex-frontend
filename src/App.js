@@ -80,9 +80,9 @@ function App() {
   const [pokes, setPokes] = useState([]);
 
   useEffect(() => {
-    fetch("https://pokeapi.co/api/v2/pokemon/1")
+    fetch("localhost:4000/poke")
       .then((res) => res.json())
-      .then((res) => setPokes([res]));
+      .then((res) => setPokes(res));
   }, []);
 
   return (
