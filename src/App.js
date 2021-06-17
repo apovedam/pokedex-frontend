@@ -1,12 +1,13 @@
 import "./App.css";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import React, { useEffect, useState } from "react";
+import { CssBaseline } from "@material-ui/core";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { AppBar, CssBaseline, Toolbar, Typography } from "@material-ui/core";
 
 import Home from "./Components/Home";
 import Dex from "./Components/Dex";
 import Detail from "./Components/Detail";
+import NavBar from "./Components/NavBar";
 
 const theme = createMuiTheme({
   palette: {
@@ -40,7 +41,7 @@ function App() {
   function addDexPoke(id) {
     if (!isDexFull) {
       const pokeToAdd = pokes.filter((item) => item.id === id);
-      const newDexPokes = [...dexPokes, pokeToAdd];
+      const newDexPokes = [...dexPokes, pokeToAdd[0]];
       setDexPokes(newDexPokes);
       if (dexPokes.length > 5) setIsDexFull(true);
     }
@@ -63,30 +64,27 @@ function App() {
   return (
     <React.Fragment>
       <CssBaseline />
+
       <ThemeProvider theme={theme}>
-        <AppBar position="relative">
-          <Toolbar>
-            <Typography variant="h6" color="inherit" noWrap>
-              Pokedex
-            </Typography>
-          </Toolbar>
-        </AppBar>
+        <main>
+          <Router>
+            <Switch>
+              <Route path="/detail">
+                <NavBar title="Detail" isHome={false} />
+                <Detail detailPoke={detailPoke} addDexPoke={addDexPoke} />
+              </Route>
+              <Route path="/dex">
+                <NavBar title="Dex" isHome={false} />
+                <Dex dexPokes={dexPokes} removeDexPoke={removeDexPoke} />
+              </Route>
+              <Route path="/">
+                <NavBar title="Home" isHome={true} />
+                <Home pokes={pokes} loadDetail={loadDetail} />
+              </Route>
+            </Switch>
+          </Router>
+        </main>
       </ThemeProvider>
-      <main>
-        <Router>
-          <Switch>
-            <Route path="/detail">
-              <Detail detailPoke={detailPoke} addDexPoke={addDexPoke} />
-            </Route>
-            <Route path="/dex">
-              <Dex dexPokes={dexPokes} removeDexPoke={removeDexPoke} />
-            </Route>
-            <Route path="/">
-              <Home pokes={pokes} loadDetail={loadDetail} />
-            </Route>
-          </Switch>
-        </Router>
-      </main>
     </React.Fragment>
   );
 }
