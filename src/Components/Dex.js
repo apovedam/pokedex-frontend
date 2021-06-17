@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Card,
@@ -9,21 +9,10 @@ import {
   Grid,
   Typography,
   Button,
-  Paper,
 } from "@material-ui/core";
-import { useHistory } from "react-router-dom";
 
+//component styling
 const useStyles = makeStyles((theme) => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
-  },
-  heroButtons: {
-    marginTop: theme.spacing(4),
-  },
   cardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
@@ -34,58 +23,18 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
   },
   cardMedia: {
-    // paddingTop: "56.25%", // 16:9
-    paddingTop: "100%", // 16:9
+    paddingTop: "100%",
     backgroundColor: "#e0e0e0",
-    color: "#FFFFFF",
     height: 0,
   },
   cardContent: {
     flexGrow: 1,
   },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
-
-  root: {
-    height: "100%",
-    display: "flex",
-    flexDirection: "row",
-  },
-  details: {
-    display: "flex",
-    flexDirection: "column",
-  },
-  remove: { display: "flex", flexDirection: "column" },
-  cover: {
-    height: 150,
-    width: 150,
-  },
-  root2: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    margin: "auto",
-    maxWidth: 500,
-  },
-  image: {
-    width: 128,
-    height: 128,
-  },
-  img: {
-    margin: "auto",
-    display: "block",
-    maxWidth: "100%",
-    maxHeight: "100%",
-  },
 }));
 
 const Dex = (props) => {
+  //Class styling
   const classes = useStyles();
-
-  const history = useHistory();
 
   return (
     <Container className={classes.cardGrid} maxWidth="md">
@@ -106,6 +55,7 @@ const Dex = (props) => {
               </CardContent>
               <CardActions>
                 <Button
+                  variant="contained"
                   size="small"
                   color="primary"
                   onClick={() => props.removeDexPoke(card.id)}

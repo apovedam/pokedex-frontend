@@ -9,12 +9,13 @@ import Dex from "./Components/Dex";
 import Detail from "./Components/Detail";
 import NavBar from "./Components/NavBar";
 
+//Page color theme
 const theme = createMuiTheme({
   palette: {
     primary: {
       light: "#757ce8",
       main: "#ba000d",
-      dark: "#002884",
+      dark: "#d50000",
       contrastText: "#fff",
     },
     secondary: {
@@ -27,35 +28,45 @@ const theme = createMuiTheme({
 });
 
 function App() {
+  //Pokemon list state
   const [pokes, setPokes] = useState([]);
+  //Pokedex list state
   const [dexPokes, setDexPokes] = useState([]);
-  const [detailPoke, setDetailPoke] = useState({ sprites: [{}], types: [] });
+  //State to check if new pokemon can be added
   const [isDexFull, setIsDexFull] = useState(false);
+  //Details of the current selected pokemon
+  const [detailPoke, setDetailPoke] = useState({ sprites: [{}], types: [] });
 
+  //Fetch data on component load
   useEffect(() => {
     fetch("https://ubiqua-pokedex-backend.herokuapp.com/poke")
       .then((res) => res.json())
       .then((res) => setPokes(res));
   }, []);
 
+  //Add pokemon to dex by ID
   function addDexPoke(id) {
     if (!isDexFull) {
       const pokeToAdd = pokes.filter((item) => item.id === id);
-      const newDexPokes = [...dexPokes, pokeToAdd[0]];
-      setDexPokes(newDexPokes);
-      if (dexPokes.length > 5) setIsDexFull(true);
+      if (pokeToAdd.length === 1) {
+        const newDexPokes = [...dexPokes, pokeToAdd[0]];
+        setDexPokes(newDexPokes);
+        if (dexPokes.length > 5) setIsDexFull(true);
+      }
     }
   }
 
+  //Remove pokemon from dex by ID
   function removeDexPoke(id) {
     const newDexPokes = dexPokes.filter((item) => item.id !== id);
     setDexPokes(newDexPokes);
     setIsDexFull(false);
   }
 
+  //Load pokemon details to state by ID
   function loadDetail(id) {
     const requestedPoke = pokes.filter((item) => item.id === id);
-    if (requestedPoke.length == 1) setDetailPoke(requestedPoke[0]);
+    if (requestedPoke.length === 1) setDetailPoke(requestedPoke[0]);
     else {
       return setDetailPoke({ sprites: [{}], types: [{}] });
     }
@@ -64,7 +75,6 @@ function App() {
   return (
     <React.Fragment>
       <CssBaseline />
-
       <ThemeProvider theme={theme}>
         <main>
           <Router>

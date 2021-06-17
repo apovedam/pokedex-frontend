@@ -26,6 +26,7 @@ function NavBar(props) {
   const classes = useStyles();
   const history = useHistory();
 
+  //Show back button if not in home page
   let backButton;
   if (!props.isHome) {
     backButton = (
@@ -41,6 +42,7 @@ function NavBar(props) {
     );
   }
 
+  //Show pokedex button if in home page
   let dexButton;
   if (props.isHome) {
     dexButton = (

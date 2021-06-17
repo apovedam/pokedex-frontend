@@ -10,17 +10,8 @@ import {
 } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 
+//component styling
 const useStyles = makeStyles((theme) => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
-  },
-  heroButtons: {
-    marginTop: theme.spacing(4),
-  },
   cardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8),
@@ -33,22 +24,20 @@ const useStyles = makeStyles((theme) => ({
   cardMedia: {
     paddingTop: "100%",
     backgroundColor: "#e0e0e0",
-    color: "#FFFFFF",
     height: 0,
   },
   cardContent: {
     flexGrow: 1,
   },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
 }));
 
 const Home = (props) => {
+  //Class styling
   const classes = useStyles();
-
+  //Routing history
   const history = useHistory();
+
+  //Load pokemon to detail state and push to navigation
   const handleOnClick = (id) => {
     props.loadDetail(id);
     history.push("/Detail");
@@ -64,6 +53,7 @@ const Home = (props) => {
               onClick={() => handleOnClick(card.id)}
             >
               <CardMedia
+                variant="contained"
                 className={classes.cardMedia}
                 image={card.sprites.front_default}
                 title="Image title"
